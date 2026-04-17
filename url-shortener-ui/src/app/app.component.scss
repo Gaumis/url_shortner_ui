@@ -118,8 +118,11 @@ h1 {
 
 .card-topline {
   display: flex;
+  flex-direction: column;
   gap: 14px;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .brand-mark {
@@ -132,6 +135,12 @@ h1 {
   color: #291622;
   font-size: 1.3rem;
   font-weight: 800;
+}
+
+.brand-copy {
+  display: grid;
+  gap: 4px;
+  justify-items: center;
 }
 
 .brand-name,

@@ -31,11 +31,11 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Shortly');
   });
 
-  it('should render the hero title', () => {
+  it('should render the hero helper text', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Paste a long URL');
+    expect(compiled.querySelector('.hero-text')?.textContent).toContain('Drop in your full URL');
   });
 
   it('should request a shortened url from the API for a valid input', () => {
