@@ -1,0 +1,85 @@
+<main class="page-shell">
+  <section class="hero-panel">
+    <div class="hero-copy">
+      <span class="eyebrow">Instant Link Shortener</span>
+      <h1>Turn long links into short, shareable URLs in one clean step.</h1>
+      <p class="hero-text">
+        Drop in your full URL, generate the short version instantly, and copy it right away.
+        No sign in, no setup, no extra screens.
+      </p>
+    </div>
+
+    <div class="shortener-card center-card">
+      <div class="card-topline">
+        <span class="brand-mark">S</span>
+        <div>
+          <p class="brand-name">{{ title }}</p>
+          <p class="brand-subtitle">Compact links for campaigns, chats, and quick sharing.</p>
+        </div>
+      </div>
+
+      <form class="shortener-form" (ngSubmit)="shortenUrl()">
+        <label class="input-label" for="long-url">Enter your long URL</label>
+        <textarea
+          id="long-url"
+          name="longUrl"
+          [(ngModel)]="longUrl"
+          rows="4"
+          placeholder="https://www.example.com/blog/how-to-launch-a-product-with-a-very-long-link"
+        ></textarea>
+
+        @if (submitted && !hasValidUrl) {
+          <p class="error-message">Please enter a valid full URL starting with http:// or https://</p>
+        }
+
+        @if (apiError) {
+          <p class="error-message">{{ apiError }}</p>
+        }
+
+        <button class="primary-button" type="submit" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Generating...' : 'Generate short URL' }}
+        </button>
+      </form>
+
+      <div class="result-card">
+        <div class="result-copy">
+          <span class="result-label">{{ shortenedUrl ? 'Your shortened URL' : 'Short URL preview' }}</span>
+          @if (shortenedUrl) {
+            <a [href]="shortenedUrl" target="_blank" rel="noopener">{{ shortenedUrl }}</a>
+          } @else {
+            <p class="result-placeholder">{{ sampleShortUrl }}</p>
+          }
+        </div>
+        <button
+          class="secondary-button"
+          type="button"
+          [disabled]="!shortenedUrl"
+          (click)="copyShortUrl()"
+        >
+          {{ copied ? 'Copied' : 'Copy link' }}
+        </button>
+      </div>
+
+      <div class="trust-row">
+        <span>Fast sharing</span>
+        <span>Clean format</span>
+        <span>No account wall</span>
+      </div>
+    </div>
+
+    <div class="hero-points">
+      <div class="point-card">
+        <span class="point-value">1 click</span>
+        <span class="point-label">to shorten and copy</span>
+      </div>
+      <div class="point-card">
+        <span class="point-value">0 login</span>
+        <span class="point-label">required for access</span>
+      </div>
+      <div class="point-card">
+        <span class="point-value">Ready</span>
+        <span class="point-label">for mobile and desktop</span>
+      </div>
+    </div>
+  </section>
+</main>
